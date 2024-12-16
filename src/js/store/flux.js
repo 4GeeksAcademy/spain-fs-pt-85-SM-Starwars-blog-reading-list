@@ -1,20 +1,45 @@
+import { CharacterDetails } from "../views/character-details";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			characters: [],
+			characterSpecificDetails: []
 		},
 		actions: {
+			getCharacters: async function getCharactersViaApi() {
+				try {
+					const response = await fetch("https://www.swapi.tech/api/people", {
+						method: "GET"
+					})
+					console.log(response);
+					const data = await response.json();
+					console.log(data);
+					setStore({characters: data.results})
+					return;
+				} catch (error) {
+					console.log(error);
+					return;
+				}
+			},
+			
+			getCharacterInfoViaApi: async function getCharacterInfoViaApi(url) {
+				try {
+					const response = await fetch(`${url}`, {
+						method: "GET"
+					})
+					console.log(response);
+					const data = await response.json();
+					console.log(data, "esta info interesaAAAAAAAA");
+					const store = getStore();
+					await setStore({...store, characterSpecificDetails: data});
+					return;
+				} catch (error) {
+					console.log(error);
+					return;
+				}
+			},
+
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");

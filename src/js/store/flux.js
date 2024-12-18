@@ -5,9 +5,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			characters: [],
 			characterSpecificDetails: [],
+			vehicles: [],
+			vehicleSpecificDetails: [],
+			planets: [],
+			planetSpecificDetails: [],
 			favourites: [{
 				"key": "1",
 				"name": "Luke",
+				"type": "character",
 				"uid": "1"
 			}]
 		},
@@ -46,21 +51,89 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			getVehicles: async function getVehiclesViaApi() {
+				try {
+					const response = await fetch("https://www.swapi.tech/api/vehicles", {
+						method: "GET"
+					})
+					console.log(response);
+					const data = await response.json();
+					console.log(data);
+					const store = getStore();
+					setStore({ ...store, vehicles: [...store.vehicles, ...data.results] })
+					return;
+				} catch (error) {
+					console.log(error);
+					return;
+				}
+			},
+
+			getVehicleInfoViaApi: async function getVehiclesInfoViaApi(uid) {
+				try {
+					const response = await fetch(`https://www.swapi.tech/api/vehicles/${uid}`, {
+						method: "GET"
+					})
+					console.log(response);
+					const data = await response.json();
+					console.log(data, "esta info vehículos");
+					const store = getStore();
+					await setStore({ ...store, vehicleSpecificDetails: data });
+					return;
+				} catch (error) {
+					console.log(error);
+					return;
+				}
+			},
+
+			getPlanets: async function getPlanetsViaApi() {
+				try {
+					const response = await fetch("https://www.swapi.tech/api/planets", {
+						method: "GET"
+					})
+					console.log(response);
+					const data = await response.json();
+					console.log(data);
+					const store = getStore();
+					setStore({ ...store, planets: [...store.planets, ...data.results] })
+					return;
+				} catch (error) {
+					console.log(error);
+					return;
+				}
+			},
+
+			getPlanetInfoViaApi: async function getPlanetsInfoViaApi(uid) {
+				try {
+					const response = await fetch(`https://www.swapi.tech/api/planets/${uid}`, {
+						method: "GET"
+					})
+					console.log(response);
+					const data = await response.json();
+					console.log(data, "esta info planetas");
+					const store = getStore();
+					await setStore({ ...store, planetSpecificDetails: data });
+					return;
+				} catch (error) {
+					console.log(error);
+					return;
+				}
+			},
+
 			// funcion para añadir elementos a la lista de favoritos
-			addFavourite: function addFavourite(targetItem) {
+			addFavourite: function addFavourite(targetItem, typeOfItem) {
 				const store = getStore();
 				const name = targetItem.name;
 				const uid = targetItem.uid;
 				for (let i = 0; i < store.favourites.length; i++) {
-					if (store.favourites[i].uid === targetItem.uid) return;
+					if ((store.favourites[i].uid && store.favourites[i].type) === (targetItem.uid && targetItem.type)) return;
 				}
-				setStore({ ...store, favourites: [...store.favourites, { "key": uid, "name": name, "uid": uid }] })
+				setStore({ ...store, favourites: [...store.favourites, { "key": name, "name": name, "type": typeOfItem ,"uid": uid }] })
 			},
 			// función para eliminar elementos de la lista de favoritos
 			deleteFavourite: function deleteFavourite(itemToDelete) {
 				const store = getStore();
 				const newFavouriteArr = store.favourites.filter(item =>
-					item.uid !== itemToDelete.uid
+					item.key !== itemToDelete.key
 				);
 				setStore({ ...store, favourites: newFavouriteArr })
 			}

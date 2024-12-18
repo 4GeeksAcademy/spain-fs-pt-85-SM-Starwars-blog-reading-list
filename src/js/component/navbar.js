@@ -5,25 +5,26 @@ import { Context } from "../store/appContext.js";
 
 export const Navbar = () => {
 	const { store, actions } = useContext(Context)
-	let liItemGenerator = store.favourites.map((character) => {
+	let liItemGenerator = store.favourites.map((item) => {
 		return (
 			<LiItem
-				key={character.uid}
-				name={character.name}
-				uid={character.uid}
-				deleteOnClick={() => actions.deleteFavourite(character)}
+				key={item.name}
+				name={item.name}
+				uid={item.uid}
+				type={item.type}
+				deleteOnClick={() => actions.deleteFavourite(item)}
 			/>
 		)
 	});
 
 	useEffect(() => {
-		liItemGenerator = store.favourites.map((character) => {
+		liItemGenerator = store.favourites.map((item) => {
 			return (
 				<LiItem
-					key={character.uid}
-					name={character.name}
-					uid={character.uid}
-					deleteOnClick={() => actions.deleteFavourite(character)}
+					key={item.name}
+					name={item.name}
+					uid={item.uid}
+					deleteOnClick={() => actions.deleteFavourite(item)}
 				/>
 			)
 		});

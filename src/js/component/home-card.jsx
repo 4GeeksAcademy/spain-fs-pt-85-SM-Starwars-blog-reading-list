@@ -9,10 +9,10 @@ function HomeCard(props) {
             <img src="..." className="card-img-top" alt="..." />
                 <div className="card-body">
                     <h5 className="card-title text-center">{props.name}</h5>
-                    {/* <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> */}
-                    {/* <Link to="/characterDetails"> */}
+                    <div className="mt-3 d-flex justify-content-around">
                         <button className="btn btn-primary" onClick={props.learnMoreOnClick}>Learn more</button>
-                    {/* </Link> */}
+                        <button className="btn btn-outline-danger fa-regular fa-heart p-2" onClick={props.addFavouriteOnCLick}></button>
+                    </div>
                 </div>
         </div>
     )

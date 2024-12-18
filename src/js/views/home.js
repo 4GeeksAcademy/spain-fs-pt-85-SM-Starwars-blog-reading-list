@@ -18,19 +18,25 @@ const Home = () => {
 			key={character.uid}
 			name={character.name}
 			learnMoreOnClick={() => learnMore(character)}
+			addFavouriteOnCLick={() => actions.addFavourite(character)}
 			/>
 		)
 	})
 
+	
+
 	async function learnMore(targetCharacter){
-		const url = targetCharacter.url;
-		await actions.getCharacterInfoViaApi(url)
-		navigate("/characterDetails")
+		const uid = targetCharacter.uid;
+
+		await actions.getCharacterInfoViaApi(uid)
+		console.log(targetCharacter);
+		navigate(`/characterDetails/${targetCharacter.uid}`)
 	}
 
 	async function getInfo() {
-		console.log( await actions.getCharacterInfoViaApi("https://www.swapi.tech/api/people/1"));
-		console.log(store.characterSpecificDetails.result.properties);
+		// console.log( await actions.getCharacterInfoViaApi("https://www.swapi.tech/api/people/1"));
+		// console.log(store.characterSpecificDetails.result.properties);
+		console.log(store.favourites);
 		
 	}
 

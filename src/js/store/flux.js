@@ -4,7 +4,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			characters: [],
-			characterSpecificDetails: []
+			characterSpecificDetails: [],
+			favourites: [{
+				"key": "1",
+				"name": "Luke",
+				"uid": "1"
+			}]
 		},
 		actions: {
 			getCharacters: async function getCharactersViaApi() {
@@ -15,24 +20,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(response);
 					const data = await response.json();
 					console.log(data);
-					setStore({characters: data.results})
+					const store = getStore();
+					setStore({ ...store, characters: [...store.characters, ...data.results] })
 					return;
 				} catch (error) {
 					console.log(error);
 					return;
 				}
 			},
-			
-			getCharacterInfoViaApi: async function getCharacterInfoViaApi(url) {
+
+			getCharacterInfoViaApi: async function getCharacterInfoViaApi(uid) {
 				try {
-					const response = await fetch(`${url}`, {
+					const response = await fetch(`https://www.swapi.tech/api/people/${uid}`, {
 						method: "GET"
 					})
 					console.log(response);
 					const data = await response.json();
 					console.log(data, "esta info interesaAAAAAAAA");
 					const store = getStore();
-					await setStore({...store, characterSpecificDetails: data});
+					await setStore({ ...store, characterSpecificDetails: data });
 					return;
 				} catch (error) {
 					console.log(error);
@@ -40,28 +46,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
-			},
-			changeColor: (index, color) => {
-				//get the store
+			// funcion para añadir elementos a la lista de favoritos
+			addFavourite: function addFavourite(targetItem) {
 				const store = getStore();
-
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
-
-				//reset the global store
-				setStore({ demo: demo });
+				const name = targetItem.name;
+				const uid = targetItem.uid;
+				for (let i = 0; i < store.favourites.length; i++) {
+					if (store.favourites[i].uid === targetItem.uid) return;
+				}
+				setStore({ ...store, favourites: [...store.favourites, { "key": uid, "name": name, "uid": uid }] })
+			},
+			// función para eliminar elementos de la lista de favoritos
+			deleteFavourite: function deleteFavourite(itemToDelete) {
+				const store = getStore();
+				const newFavouriteArr = store.favourites.filter(item =>
+					item.uid !== itemToDelete.uid
+				);
+				setStore({ ...store, favourites: newFavouriteArr })
 			}
 		}
 	};

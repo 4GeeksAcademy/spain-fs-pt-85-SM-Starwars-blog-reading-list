@@ -1,0 +1,15 @@
+/* // <uniquifier>: Use a unique and descriptive class name
+// <weight>: Use a value from 100 to 900 */
+
+.heebo {
+  font-family: 'Heebo', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.noto-sans-runic-regular {
+    font-family: "Noto Sans Runic", serif;
+    font-weight: 400;
+    font-style: normal;
+  }

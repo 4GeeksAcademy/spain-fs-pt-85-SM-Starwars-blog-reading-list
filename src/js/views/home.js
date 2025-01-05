@@ -77,7 +77,7 @@ const Home = () => {
 
 	return (
 		<div className="d-flex flex-column mt-5">
-			<h1 className="text-center">Characters</h1>
+			<h1 className="text-center heebo-font">Characters</h1>
 			<div className="mb-5 d-flex flex-row overflow-scroll">
 				{characterCardGenerator}
 			</div>

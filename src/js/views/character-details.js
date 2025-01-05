@@ -3,9 +3,7 @@ import { Link } from "react-router-dom";
 
 import { Context } from "../store/appContext";
 
-import "../../styles/demo.css";
-
-//se me ocurre crear un objeto enorme con los nombres de los personajes de starwars como key y como valor poner la ruta de la imágen
+import "../../styles/details-view.css";
 
 export const CharacterDetails = () => {
 	const { store, actions } = useContext(Context);
@@ -18,8 +16,8 @@ export const CharacterDetails = () => {
 				<div className="col-11 d-flex justify-content-around">
 					<img className="col-6" src="https://static.wikia.nocookie.net/esstarwars/images/d/d9/Luke-rotjpromo.jpg/revision/latest?cb=20071214134433"></img>
 					<div className="col-6 text-center">
-						<h1>{characterSpecificDetails.name}</h1>
-						<p>
+						<h1 className="noto-sans-runic-regular">{characterSpecificDetails.name}</h1>
+						<p className="heebo">
 							Lorem ipsum dolor sit amet. Aut quod velit in doloremque animi qui iusto animi est laborum porro aut vero commodi
 							aut recusandae cumque nam cumque necessitatibus. Id sapiente esse et sunt galisum hic omnis quas aut omnis cumque
 							in nostrum praesentium eum adipisci veritatis. Et fuga necessitatibus quo corrupti provident est voluptatibus omnis

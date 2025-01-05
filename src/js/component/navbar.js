@@ -38,10 +38,10 @@ export const Navbar = () => {
 			<div className="ml-auto">
 				{/* <Link to="/demo"> */}
 				<div className="dropdown">
-					<button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-						Dropdown button
+					<button className="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-boundary="viewport">
+						Favourites
 					</button>
-					<ul className="dropdown-menu">
+					<ul className="dropdown-menu dropdown-menu-end">
 						{liItemGenerator}
 					</ul>
 				</div>

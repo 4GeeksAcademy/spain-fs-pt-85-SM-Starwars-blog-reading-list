@@ -13,3 +13,8 @@
     font-weight: 400;
     font-style: normal;
   }
+
+.max-heigth-600px {
+  max-height: 600px;
+  object-fit: contain;
+}

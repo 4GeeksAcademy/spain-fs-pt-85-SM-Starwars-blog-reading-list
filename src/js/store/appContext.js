@@ -22,7 +22,8 @@ const injectContext = PassedComponent => {
 		);
 
 		useEffect(() => {
-			console.log(state.actions.getCharacters(), "este soy yo");
+			state.actions.getCharacterImages();
+			state.actions.getCharacters();
 			state.actions.getVehicles();
 			state.actions.getPlanets();
 		}, []);

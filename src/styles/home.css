@@ -7,3 +7,9 @@
     font-weight: 400;
     font-style: normal;
   }
+
+.max-heigth-400px{
+  max-height: 400px;
+  object-fit: cover;
+  object-position: top;
+}

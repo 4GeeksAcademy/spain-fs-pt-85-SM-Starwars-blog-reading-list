@@ -1,4 +1,5 @@
 import { CharacterDetails } from "../views/character-details";
+import "../../img/404 image not found.jpg"
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
@@ -9,14 +10,38 @@ const getState = ({ getStore, getActions, setStore }) => {
 			vehicleSpecificDetails: [],
 			planets: [],
 			planetSpecificDetails: [],
-			favourites: [{
-				"key": "1",
-				"name": "Luke",
-				"type": "character",
-				"uid": "1"
-			}]
+			favourites: [],
+			characterImages: []
 		},
 		actions: {
+			getCharacterImages: async function getCharacterImages() {
+				try {
+					const response = await fetch("https://akabab.github.io/starwars-api/api/all.json", {
+						method: "GET"
+					})
+					console.log(response);
+					const data = await response.json();
+					console.log(data);
+					const store = getStore();
+					setStore({...store, characterImages: data})
+					return;
+				} catch (error) {
+					console.log(error);
+					return;
+				}
+			},
+
+			getSpecificCharacterImage: function getSpecificCharacterImage(character) {
+				const store = getStore();
+				for (let i = 0; i < store.characterImages.length; i++){
+					if (character.name == store.characterImages[i].name) {
+						return store.characterImages[i].image;
+					}
+				}
+				return console.log(character);
+				
+			},
+
 			getCharacters: async function getCharactersViaApi() {
 				try {
 					const response = await fetch("https://www.swapi.tech/api/people", {

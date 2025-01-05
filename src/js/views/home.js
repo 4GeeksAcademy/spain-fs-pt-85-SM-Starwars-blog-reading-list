@@ -11,7 +11,7 @@ const Home = () => {
 	const characters = store.characters;
 	const vehicles = store.vehicles;
 	const planets = store.planets;
-	const [characterInfo, setCharacterInfo] = useState({});
+	// const [characterInfo, setCharacterInfo] = useState({});
 	const navigate = useNavigate();
 
 	const characterCardGenerator = characters.map((character) => {
@@ -21,6 +21,7 @@ const Home = () => {
 			name={character.name}
 			learnMoreOnClick={() => learnMoreCharacter(character)}
 			addFavouriteOnCLick={() => actions.addFavourite(character, "character")}
+			image={actions.getSpecificCharacterImage(character)}
 			/>
 		)
 	})
@@ -69,10 +70,8 @@ const Home = () => {
 	}
 
 	async function getInfo() {
-		// console.log( await actions.getCharacterInfoViaApi("https://www.swapi.tech/api/people/1"));
-		// console.log(store.characterSpecificDetails.result.properties);
-		console.log(store.favourites);
-		
+		console.log(store.characterImages);
+				
 	}
 
 	return (

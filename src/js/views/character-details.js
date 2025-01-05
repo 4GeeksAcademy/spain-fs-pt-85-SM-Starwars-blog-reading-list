@@ -14,7 +14,7 @@ export const CharacterDetails = () => {
 		<div>
 			<div>
 				<div className="col-11 d-flex justify-content-around">
-					<img className="col-6" src="https://static.wikia.nocookie.net/esstarwars/images/d/d9/Luke-rotjpromo.jpg/revision/latest?cb=20071214134433"></img>
+					<img className="col-6 max-heigth-600px" src={actions.getSpecificCharacterImage(characterSpecificDetails)}></img>
 					<div className="col-6 text-center">
 						<h1 className="noto-sans-runic-regular">{characterSpecificDetails.name}</h1>
 						<p className="heebo">

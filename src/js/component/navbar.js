@@ -1,10 +1,15 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import LiItem from "./favourite-li.jsx";
 import { Context } from "../store/appContext.js";
 
 export const Navbar = () => {
 	const { store, actions } = useContext(Context)
+
+	const favourites = store.favourites
+	const [favouritesDisplay, setFavouritesDisplay] = useState("btn btn-primary dropdown-toggle d-none")
+	const [dropDownMenuDisplay, setDropDownMenuDisplay] = useState("dropdown-menu dropdown-menu-end")
+
 	let liItemGenerator = store.favourites.map((item) => {
 		return (
 			<LiItem
@@ -30,6 +35,18 @@ export const Navbar = () => {
 		});
 	}, [store.favourites])
 
+	useEffect(() => {
+		if (favourites.length < 1) {
+			setFavouritesDisplay("btn btn-primary dropdown-toggle d-none")
+			setDropDownMenuDisplay("dropdown-menu dropdown-menu-end d-none")
+		}
+		else {
+			setFavouritesDisplay("btn btn-primary dropdown-toggle")
+			setDropDownMenuDisplay("dropdown-menu dropdown-menu-end")
+		}
+
+	}, [favourites])
+
 	return (
 		<nav className="navbar navbar-light bg-light mb-3 mx-3">
 			<Link to="/">
@@ -38,10 +55,10 @@ export const Navbar = () => {
 			<div className="ml-auto">
 				{/* <Link to="/demo"> */}
 				<div className="dropdown">
-					<button className="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-boundary="viewport">
+					<button className={favouritesDisplay} type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-boundary="viewport">
 						Favourites
 					</button>
-					<ul className="dropdown-menu dropdown-menu-end">
+					<ul className={dropDownMenuDisplay}>
 						{liItemGenerator}
 					</ul>
 				</div>

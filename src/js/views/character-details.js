@@ -13,11 +13,11 @@ export const CharacterDetails = () => {
 	return (
 		<div>
 			<div>
-				<div className="col-11 d-flex justify-content-around">
-					<img className="col-6 max-heigth-600px" src={actions.getSpecificCharacterImage(characterSpecificDetails)}></img>
+				<div className="col-11 d-flex justify-content-around align-items-center">
+					<img className="col-6 max-heigth-600px mb-5 align-items-center" src={actions.getSpecificCharacterImage(characterSpecificDetails)}></img>
 					<div className="col-6 text-center">
-						<h1 className="noto-sans-runic-regular">{characterSpecificDetails.name}</h1>
-						<p className="heebo">
+						<h1>{characterSpecificDetails.name}</h1>
+						<p className="mando-font fs-3 my-5">
 							Lorem ipsum dolor sit amet. Aut quod velit in doloremque animi qui iusto animi est laborum porro aut vero commodi
 							aut recusandae cumque nam cumque necessitatibus. Id sapiente esse et sunt galisum hic omnis quas aut omnis cumque
 							in nostrum praesentium eum adipisci veritatis. Et fuga necessitatibus quo corrupti provident est voluptatibus omnis

@@ -1,12 +1,24 @@
 /* // <uniquifier>: Use a unique and descriptive class name
 // <weight>: Use a value from 100 to 900 */
 
-.heebo-font {
-    font-family: "Heebo", serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-  }
+.custom-scroll-bar {
+  overflow-x: auto;
+  overflow-y: hidden;
+  /* white-space: nowrap; */
+  scrollbar-width: thin;
+  scrollbar-color: black #aaa;
+}
+
+/* Para navegadores que no soporten `scrollbar-color` y `scrollbar-width` */
+/* .custom-scroll-bar::-webkit-scrollbar {
+  height: 8px;
+  background-color: #aaa;
+}
+
+.custom-scroll-bar::-webkit-scrollbar-thumb {
+  background-color: black;
+  border-radius: 4px;
+} */
 
 .max-heigth-400px{
   max-height: 400px;

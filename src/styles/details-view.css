@@ -8,11 +8,31 @@
   font-style: normal;
 }
 
-.noto-sans-runic-regular {
-    font-family: "Noto Sans Runic", serif;
-    font-weight: 400;
-    font-style: normal;
-  }
+.noto-sans-old-turkic-regular {
+  font-family: "Noto Sans Old Turkic", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Mando Code';
+  src: url('fonts/MandoAfClassic-lgB6D.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.mando-font {
+  font-family: 'Mando Code', sans-serif;
+}
+
+.playwrite-au-sa-test {
+  font-family: "Playwrite AU SA", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+  
 
 .max-heigth-600px {
   max-height: 600px;

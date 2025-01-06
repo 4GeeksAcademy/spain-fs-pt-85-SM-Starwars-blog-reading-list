@@ -77,15 +77,15 @@ const Home = () => {
 	return (
 		<div className="d-flex flex-column mt-5">
 			<h1 className="text-center heebo-font">Characters</h1>
-			<div className="mb-5 d-flex flex-row overflow-scroll">
+			<div className="mb-5 d-flex flex-row custom-scroll-bar ">
 				{characterCardGenerator}
 			</div>
 			<h1 className="mt-5 text-center">Vehicles</h1>
-			<div className="mb-5 d-flex flex-row overflow-scroll">
+			<div className="mb-5 d-flex flex-row overflow-scroll custom-scroll-bar">
 				{vehicleCardGenerator}
 			</div>
 			<h1 className="mt-5 text-center">Planets</h1>
-			<div className="d-flex flex-row overflow-scroll">
+			<div className="d-flex flex-row overflow-scroll custom-scroll-bar">
 				{planetCardGenerator}
 			</div>
 			<button onClick={getInfo}>Info</button>

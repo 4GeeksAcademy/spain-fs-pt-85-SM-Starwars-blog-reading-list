@@ -38,7 +38,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return store.characterImages[i].image;
 					}
 				}
-				return console.log(character);
+				return "404 image not found.jpg";
 				
 			},
 

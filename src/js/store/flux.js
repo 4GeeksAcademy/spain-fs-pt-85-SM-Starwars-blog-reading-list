@@ -4,10 +4,13 @@ import "../../img/404 image not found.jpg"
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+			charactersPage: 1,
 			characters: [],
 			characterSpecificDetails: [],
+			vehiclesPage: 1,
 			vehicles: [],
 			vehicleSpecificDetails: [],
+			planetsPage: 1,
 			planets: [],
 			planetSpecificDetails: [],
 			favourites: [],
@@ -43,19 +46,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			getCharacters: async function getCharactersViaApi() {
-				try {
-					const response = await fetch("https://www.swapi.tech/api/people", {
-						method: "GET"
-					})
-					console.log(response);
-					const data = await response.json();
-					console.log(data);
-					const store = getStore();
-					setStore({ ...store, characters: [...store.characters, ...data.results] })
-					return;
-				} catch (error) {
-					console.log(error);
-					return;
+				const store = getStore();
+				if (store.charactersPage == 9) {return;}
+				else {
+					try {
+						const store = getStore();
+						const response = await fetch(`https://www.swapi.tech/api/people?page=${store.charactersPage}&limit=10`, {
+							method: "GET"
+						})
+						console.log(response);
+						const data = await response.json();
+						console.log(data);
+						setStore({ ...store, characters: [...store.characters, ...data.results] })
+						setStore({...store, charactersPage: store.charactersPage + 1})
+						return;
+					} catch (error) {
+						console.log(error);
+						return;
+					}
 				}
 			},
 
@@ -78,14 +86,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			getVehicles: async function getVehiclesViaApi() {
 				try {
-					const response = await fetch("https://www.swapi.tech/api/vehicles", {
+					const store = getStore();
+					const response = await fetch(`https://www.swapi.tech/api/vehicles?page=${store.vehiclesPage}&limit=10`, {
 						method: "GET"
 					})
 					console.log(response);
 					const data = await response.json();
 					console.log(data);
-					const store = getStore();
 					setStore({ ...store, vehicles: [...store.vehicles, ...data.results] })
+					setStore({...store, vehiclesPage: store.vehiclesPage + 1})
 					return;
 				} catch (error) {
 					console.log(error);
@@ -102,7 +111,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const data = await response.json();
 					console.log(data, "esta info vehículos");
 					const store = getStore();
-					await setStore({ ...store, vehicleSpecificDetails: data });
+					setStore({ ...store, vehicleSpecificDetails: data });
 					return;
 				} catch (error) {
 					console.log(error);
@@ -112,14 +121,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			getPlanets: async function getPlanetsViaApi() {
 				try {
-					const response = await fetch("https://www.swapi.tech/api/planets", {
+					const store = getStore();
+					const response = await fetch(`https://www.swapi.tech/api/planets?page=${store.planetsPage}&limit=10`, {
 						method: "GET"
 					})
 					console.log(response);
 					const data = await response.json();
 					console.log(data);
-					const store = getStore();
 					setStore({ ...store, planets: [...store.planets, ...data.results] })
+					setStore({...store, planetsPage: store.planetsPage + 1})
 					return;
 				} catch (error) {
 					console.log(error);

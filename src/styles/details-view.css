@@ -26,6 +26,31 @@
   font-family: 'Mando Code', sans-serif;
 }
 
+@font-face {
+  font-family: 'Droid Code';
+  src: url('fonts/DroidobeshDepot-gxmVE.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.droid-font {
+  font-family: 'Droid Code', sans-serif;
+}
+
+@font-face {
+  font-family: 'Aurek Code';
+  src: url('fonts/AurebeshAfCanon-K7Ope.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.aurek-font {
+  font-family: 'Aurek Code', sans-serif;
+}
+
+
 .playwrite-au-sa-test {
   font-family: "Playwrite AU SA", serif;
   font-optical-sizing: auto;

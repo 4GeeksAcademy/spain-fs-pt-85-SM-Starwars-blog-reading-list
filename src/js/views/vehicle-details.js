@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { Context } from "../store/appContext";
 
-import "../../styles/demo.css";
+import "../../styles/details-view.css";
 
 //se me ocurre crear un objeto enorme con los nombres de los personajes de starwars como key y como valor poner la ruta de la imágen
 
@@ -19,7 +19,7 @@ export const VehicleDetails = () => {
                     <img className="col-6" src="https://53.fs1.hubspotusercontent-na1.net/hub/53/hubfs/image8-2.jpg?width=600&name=image8-2.jpg"></img>
                     <div className="col-6 text-center">
                         <h1>{vehiclesSpecificDetails.name}</h1>
-                        <p>
+                        <p className="droid-font">
                             Lorem ipsum dolor sit amet. Aut quod velit in doloremque animi qui iusto animi est laborum porro aut vero commodi
                             aut recusandae cumque nam cumque necessitatibus. Id sapiente esse et sunt galisum hic omnis quas aut omnis cumque
                             in nostrum praesentium eum adipisci veritatis. Et fuga necessitatibus quo corrupti provident est voluptatibus omnis

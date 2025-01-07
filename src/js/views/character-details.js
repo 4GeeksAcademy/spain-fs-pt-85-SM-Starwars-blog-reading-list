@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-
+import "../../img/404 image not found.jpg"
 import { Context } from "../store/appContext";
 
 import "../../styles/details-view.css";
@@ -14,7 +14,7 @@ export const CharacterDetails = () => {
 		<div>
 			<div>
 				<div className="col-11 d-flex justify-content-around align-items-center">
-					<img className="col-6 max-heigth-600px mb-5 align-items-center" src={actions.getSpecificCharacterImage(characterSpecificDetails)}></img>
+					<img className="col-6 max-heigth-600px mb-5 align-items-center" src={actions.getSpecificCharacterImage(characterSpecificDetails)} alt={"404 image not found.jpg"}></img>
 					<div className="col-6 text-center">
 						<h1>{characterSpecificDetails.name}</h1>
 						<p className="mando-font fs-3 my-5">

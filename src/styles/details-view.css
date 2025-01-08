@@ -1,17 +1,8 @@
 /* // <uniquifier>: Use a unique and descriptive class name
 // <weight>: Use a value from 100 to 900 */
 
-.heebo {
-  font-family: 'Heebo', sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.noto-sans-old-turkic-regular {
-  font-family: "Noto Sans Old Turkic", serif;
-  font-weight: 400;
-  font-style: normal;
+.mt-6 {
+  margin-top: 6rem;
 }
 
 @font-face {

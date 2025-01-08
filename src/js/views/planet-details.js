@@ -15,7 +15,7 @@ export const PlanetDetails = () => {
 	return (
 		<div>
 			<div>
-				<div className="col-11 d-flex justify-content-around">
+				<div className="col-11 d-flex justify-content-around mt-6">
 					<img className="col-6" src="https://cdn.ncbi.nlm.nih.gov/corehtml/query/egifs/https:--ashpublications.org-images-blood-pubmed.jpg"></img>
 					<div className="col-6 text-center">
 						<h1>{planetSpecificDetails.name}</h1>
@@ -35,13 +35,31 @@ export const PlanetDetails = () => {
 						</p>
 					</div>
 				</div>
-				<div className="d-flex justify-content-around ">
-					<span>{planetSpecificDetails.name}</span>
-					<span>{planetSpecificDetails.diameter}</span>
-					<span>{planetSpecificDetails.rotation_period}</span>
-					<span>{planetSpecificDetails.orbital_period}</span>
-					<span>{planetSpecificDetails.gravity}</span>
-					<span>{planetSpecificDetails.climate	}</span>
+				<div className="d-flex flex-wrap justify-content-around ">
+					<span className="text-center mt-2 px-2 border border-top-0 border-bottom-0">
+						NAME <br></br>
+						{planetSpecificDetails.name}
+					</span>
+					<span className="text-center mt-2 px-2 border border-top-0 border-bottom-0">
+						DIAMETER <br></br>
+						{planetSpecificDetails.diameter}
+					</span>
+					<span className="text-center mt-2 px-2 border border-top-0 border-bottom-0">
+						ROTATION PERIOD <br></br>
+						{planetSpecificDetails.rotation_period}
+					</span>
+					<span className="text-center mt-2 px-2 border border-top-0 border-bottom-0">
+						ORBITAL PERIOD <br></br>
+						{planetSpecificDetails.orbital_period}
+					</span>
+					<span className="text-center mt-2 px-2 border border-top-0 border-bottom-0">
+						GRAVITY <br></br>
+						{planetSpecificDetails.gravity}
+					</span>
+					<span className="text-center mt-2 px-2 border border-top-0 border-bottom-0">
+						CLIMATE <br></br>
+						{planetSpecificDetails.climate	}
+					</span>
 				</div>
 			</div>
 			<Link to="/">

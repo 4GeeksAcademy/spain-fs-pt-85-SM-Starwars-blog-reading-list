@@ -217,11 +217,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const name = targetItem.name;
 				const uid = targetItem.uid;
 				for (let i = 0; i < store.favourites.length; i++) {
-					if ((store.favourites[i].uid && store.favourites[i].type) === (targetItem.uid && targetItem.type)) return;
+					if ((store.favourites[i].uid == uid) && (store.favourites[i].type == typeOfItem)) return;
 				}
 				setStore({ 
 					...store, 
-					favourites: [...store.favourites, { "key": name, "name": name, "type": typeOfItem ,"uid": uid }] 
+					favourites: [...store.favourites, { "key": name, "name": name, "type": typeOfItem ,"uid": uid }]
 				})
 			},
 			// función para eliminar elementos de la lista de favoritos

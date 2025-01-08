@@ -1,6 +1,10 @@
 /* // <uniquifier>: Use a unique and descriptive class name
 // <weight>: Use a value from 100 to 900 */
 
+.mt-6 {
+  margin-top: 6rem;
+}
+
 .custom-scroll-bar {
   overflow-x: auto;
   overflow-y: hidden;

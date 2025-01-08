@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import LiItem from "./favourite-li.jsx";
 import { Context } from "../store/appContext.js";
+import "../../styles/navbar.css"
 
 export const Navbar = () => {
 	const { store, actions } = useContext(Context)
@@ -48,7 +49,7 @@ export const Navbar = () => {
 	}, [favourites])
 
 	return (
-		<nav className="navbar navbar-light bg-light mb-3 mx-3">
+		<nav className="navbar navbar-light bg-light mb-5 p-3 navbar-top">
 			<Link to="/">
 				<img src="https://logodownload.org/wp-content/uploads/2015/12/star-wars-logo-1-1.png" alt="star-wars-logo" style={{ width: "6rem" }} />
 			</Link>

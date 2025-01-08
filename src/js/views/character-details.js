@@ -13,7 +13,7 @@ export const CharacterDetails = () => {
 	return (
 		<div>
 			<div>
-				<div className="col-11 d-flex justify-content-around align-items-center">
+				<div className="col-11 d-flex justify-content-around align-items-center mt-6">
 					<img className="col-6 max-heigth-600px mb-5 align-items-center" src={actions.getSpecificCharacterImage(characterSpecificDetails)} alt={"404 image not found.jpg"}></img>
 					<div className="col-6 text-center">
 						<h1>{characterSpecificDetails.name}</h1>
@@ -33,13 +33,31 @@ export const CharacterDetails = () => {
 						</p>
 					</div>
 				</div>
-				<div className="d-flex justify-content-around ">
-					<span>{characterSpecificDetails.name}</span>
-					<span>{characterSpecificDetails.birth_year}</span>
-					<span>{characterSpecificDetails.gender}</span>
-					<span>{characterSpecificDetails.height}</span>
-					<span>{characterSpecificDetails.skin_color}</span>
-					<span>{characterSpecificDetails.eye_color}</span>
+				<div className="d-flex flex-wrap justify-content-around ">
+					<span className="text-center mt-2 px-2 border border-top-0 border-bottom-0">
+						NAME <br></br>
+						{characterSpecificDetails.name}
+					</span>
+					<span className="text-center mt-2 px-2 border border-top-0 border-bottom-0">
+						BIRTH YEAR <br></br>
+						{characterSpecificDetails.birth_year}
+					</span>
+					<span className="text-center mt-2 px-2 border border-top-0 border-bottom-0">
+						GENDER <br></br>
+						{characterSpecificDetails.gender}
+					</span>
+					<span className="text-center mt-2 px-2 border border-top-0 border-bottom-0">
+						HEIGHT <br></br>
+						{characterSpecificDetails.height}
+					</span>
+					<span className="text-center mt-2 px-2 border border-top-0 border-bottom-0">
+						SKIN COLOR <br></br>
+						{characterSpecificDetails.skin_color}
+					</span>
+					<span className="text-center mt-2 px-2 border border-top-0 border-bottom-0">
+						EYE COLOR <br></br>
+						{characterSpecificDetails.eye_color}
+					</span>
 				</div>
 			</div>
 			<Link to="/">

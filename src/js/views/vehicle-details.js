@@ -15,7 +15,7 @@ export const VehicleDetails = () => {
     return (
         <div>
             <div>
-                <div className="col-11 d-flex justify-content-around">
+                <div className="col-11 d-flex justify-content-around mt-6">
                     <img className="col-6" src="https://53.fs1.hubspotusercontent-na1.net/hub/53/hubfs/image8-2.jpg?width=600&name=image8-2.jpg"></img>
                     <div className="col-6 text-center">
                         <h1>{vehiclesSpecificDetails.name}</h1>
@@ -35,13 +35,26 @@ export const VehicleDetails = () => {
                         </p>
                     </div>
                 </div>
-                <div className="d-flex justify-content-around ">
-                    <span>{vehiclesSpecificDetails.name}</span>
-                    <span>{vehiclesSpecificDetails.model}</span>
-                    <span>{vehiclesSpecificDetails.vehicle_class}</span>
-                    <span>{vehiclesSpecificDetails.cost_in_credits}</span>
-                    <span>{vehiclesSpecificDetails.crew}</span>
-                    <span>{vehiclesSpecificDetails.passengers}</span>
+                <div className="d-flex flex-wrap justify-content-around ">
+                     <span className="text-center mt-2 px-2 border border-top-0 border-bottom-0">
+                        NAME <br></br>
+                        {vehiclesSpecificDetails.name}
+                    </span>
+                    <span className="text-center mt-2 px-2 border border-top-0 border-bottom-0">
+                        MODEL <br></br>
+                        {vehiclesSpecificDetails.model}</span>
+                    <span className="text-center mt-2 px-2 border border-top-0 border-bottom-0">
+                        VEHICLE CLASS <br></br>
+                        {vehiclesSpecificDetails.vehicle_class}</span>
+                    <span className="text-center mt-2 px-2 border border-top-0 border-bottom-0">
+                        COST <br></br>
+                        {vehiclesSpecificDetails.cost_in_credits}</span>
+                    <span className="text-center mt-2 px-2 border border-top-0 border-bottom-0">
+                        CREW <br></br>
+                        {vehiclesSpecificDetails.crew}</span>
+                    <span className="text-center mt-2 px-2 border border-top-0 border-bottom-0">
+                        PASSENGERS <br></br>
+                        {vehiclesSpecificDetails.passengers}</span>
                 </div>
             </div>
             <Link to="/">

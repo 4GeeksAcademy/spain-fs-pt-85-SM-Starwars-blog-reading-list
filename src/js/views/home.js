@@ -99,8 +99,8 @@ const Home = () => {
 	}
 
 	return (
-		<div className="d-flex flex-column mt-5">
-			<h1 className="text-center">Characters</h1>
+		<div className="d-flex flex-column mt-6">
+			<h1 className="text-center mt-5">Characters</h1>
 			<span className="mb-2 text-center">Showing {store.characters.length} out of 82 characters</span>
 			<div className="mb-5 d-flex flex-row custom-scroll-bar" onScroll={handleCharactersScroll}>
 				{characterCardGenerator}

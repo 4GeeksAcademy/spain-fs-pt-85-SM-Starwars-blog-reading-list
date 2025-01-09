@@ -11,7 +11,7 @@ export const VehicleDetails = () => {
     const { store, actions } = useContext(Context);
     // console.log(store.characterSpecificDetails.result.properties, "aqui");
     const vehiclesSpecificDetails = store.vehicleSpecificDetails.result.properties
-    
+
     return (
         <div>
             <div>
@@ -36,25 +36,30 @@ export const VehicleDetails = () => {
                     </div>
                 </div>
                 <div className="d-flex flex-wrap justify-content-around ">
-                     <span className="text-center mt-2 px-2 border border-top-0 border-bottom-0">
+                    <span className="text-center mt-2 px-2 border border-top-0 border-bottom-0">
                         NAME <br></br>
                         {vehiclesSpecificDetails.name}
                     </span>
                     <span className="text-center mt-2 px-2 border border-top-0 border-bottom-0">
                         MODEL <br></br>
-                        {vehiclesSpecificDetails.model}</span>
+                        {vehiclesSpecificDetails.model}
+                    </span>
                     <span className="text-center mt-2 px-2 border border-top-0 border-bottom-0">
                         VEHICLE CLASS <br></br>
-                        {vehiclesSpecificDetails.vehicle_class}</span>
+                        {vehiclesSpecificDetails.vehicle_class}
+                    </span>
                     <span className="text-center mt-2 px-2 border border-top-0 border-bottom-0">
                         COST <br></br>
-                        {vehiclesSpecificDetails.cost_in_credits}</span>
+                        {vehiclesSpecificDetails.cost_in_credits}
+                    </span>
                     <span className="text-center mt-2 px-2 border border-top-0 border-bottom-0">
                         CREW <br></br>
-                        {vehiclesSpecificDetails.crew}</span>
+                        {vehiclesSpecificDetails.crew}
+                    </span>
                     <span className="text-center mt-2 px-2 border border-top-0 border-bottom-0">
                         PASSENGERS <br></br>
-                        {vehiclesSpecificDetails.passengers}</span>
+                        {vehiclesSpecificDetails.passengers}
+                    </span>
                 </div>
             </div>
             <Link to="/">

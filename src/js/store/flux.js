@@ -71,7 +71,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getSpecificCharacterImage: function getSpecificCharacterImage(character) {
 				const store = getStore();
 				for (let i = 0; i < store.characterImages.length; i++){
-					console.log(store.characterImages[i].status);
+					// console.log(store.characterImages[i].status);
 					
 					if (character.name == store.characterImages[i].name && store.characterImages[i].status == "ok") {
 						return store.characterImages[i].image;

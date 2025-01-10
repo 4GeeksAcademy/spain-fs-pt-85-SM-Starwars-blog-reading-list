@@ -2,6 +2,8 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
+import "../styles/layout.css"
+
 import { Home } from "./views/home";
 import { CharacterDetails } from "./views/character-details";
 import { VehicleDetails } from "./views/vehicle-details";
@@ -18,7 +20,7 @@ const Layout = () => {
 	const basename = process.env.BASENAME || "";
 
 	return (
-		<div>
+		<div className="min-height">
 			<BrowserRouter basename={basename}>
 				<ScrollToTop>
 					<Navbar />

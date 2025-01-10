@@ -8,32 +8,40 @@ import "../../styles/details-view.css";
 export const CharacterDetails = () => {
 	const { store, actions } = useContext(Context);
 	const characterSpecificDetails = store.characterSpecificDetails.result.properties
+	// verificador de existencia en favoritos
 	const isFavourite = store.favourites.some(
-        (fav) => fav.name === characterSpecificDetails.name
-    )
+		(fav) => fav.name === characterSpecificDetails.name
+	)
+	// variable para el manejo de cambio del botón de favorito dependiendo de si se encuentra en favoritos o no
+	const favButtonClass = isFavourite
+		? "btn btn-secondary btn-lg fa-solid fa-heart-crack mt-1 p-2 h-50"
+		: "btn btn-danger btn-lg fa-regular mt-1 fa-heart p-2 h-50 "
+	// funcion para el manejo de cambio de función del botón favorito
+	function favouriteHandler() {
+		characterSpecificDetails.key = characterSpecificDetails.name
+		const character = store.characters.find(
+			(char) => char.name === characterSpecificDetails.name
+		);
+		if (character) {
+			characterSpecificDetails.uid = character.uid;
+		}
 
-    const favButtonClass = isFavourite
-    ? "btn btn-secondary btn-lg fa-solid fa-heart-crack mt-1 p-2 h-50"
-    : "btn btn-danger btn-lg fa-regular mt-1 fa-heart p-2 h-50 "
-
-    function favouriteHandler(){
-        characterSpecificDetails.key = characterSpecificDetails.name
-        if (isFavourite) {
-            actions.deleteFavourite(characterSpecificDetails);
-            return;
-        }
-        actions.addFavourite(characterSpecificDetails, characterSpecificDetails.type)
-    }
+		if (isFavourite) {
+			actions.deleteFavourite(characterSpecificDetails);
+			return;
+		}
+		actions.addFavourite(characterSpecificDetails, "character")
+	}
 	return (
 		<div>
 			<div>
 				<div className="col-11 d-flex justify-content-around align-items-center mt-6 mx-auto border border-black rounded shadow-sm">
 					<img className="col-6 max-heigth-600px align-items-center" src={actions.getSpecificCharacterImage(characterSpecificDetails)} alt={"404 image not found.jpg"}></img>
 					<div className="col-6 text-center">
-					<div className="d-flex justify-content-around align-items-center mx-2">
-                            <h1 className="my-3">{characterSpecificDetails.name}</h1>
-                            <button className={favButtonClass} onClick={favouriteHandler}></button>
-                        </div>
+						<div className="d-flex justify-content-around align-items-center mx-2">
+							<h1 className="my-3">{characterSpecificDetails.name}</h1>
+							<button className={favButtonClass} onClick={favouriteHandler}></button>
+						</div>
 						<p className="mando-font fs-4 m-3">
 							Lorem ipsum dolor sit amet. Aut quod velit in doloremque animi qui iusto animi est laborum porro aut vero commodi
 							aut recusandae cumque nam cumque necessitatibus. Id sapiente esse et sunt galisum hic omnis quas aut omnis cumque
@@ -77,9 +85,6 @@ export const CharacterDetails = () => {
 					</span>
 				</div>
 			</div>
-			<Link to="/">
-				<button className="btn btn-primary">Back home</button>
-			</Link>
 		</div>
 	);
 };

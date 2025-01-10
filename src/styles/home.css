@@ -1,15 +1,3 @@
-/* // <uniquifier>: Use a unique and descriptive class name
-// <weight>: Use a value from 100 to 900 */
-
-/* .custom-scroller {
-  
-  
-  /* scroll-snap-type: x mandatory;
-  scroll-snap-align: start;
-  scroll-snap-stop: always; */
-
-
-
 .mt-6 {
   margin-top: 6rem;
 }
@@ -23,25 +11,16 @@
   scrollbar-color: black #aaa;
 }
 
-.custom-scroll-bar-hover{
-  cursor:grab;
+.custom-scroll-bar-hover {
+  cursor: grab;
 }
 
-.custom-scroll-bar-active{
+.custom-scroll-bar-active {
   cursor: grabbing;
 }
-/* Para navegadores que no soporten `scrollbar-color` y `scrollbar-width` */
-/* .custom-scroll-bar::-webkit-scrollbar {
-  height: 8px;
-  background-color: #aaa;
-}
 
-.custom-scroll-bar::-webkit-scrollbar-thumb {
-  background-color: black;
-  border-radius: 4px;
-} */
 
-.max-heigth-400px{
+.max-heigth-400px {
   max-height: 400px;
   object-fit: contain;
   object-position: top;

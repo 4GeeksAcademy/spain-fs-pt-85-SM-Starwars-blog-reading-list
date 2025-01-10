@@ -8,10 +8,12 @@ export const Navbar = () => {
 	const { store, actions } = useContext(Context)
 
 	const favourites = store.favourites
+	// hooks para manejo de visibilidad de botón y dropdown de favoritos
 	const [favouritesDisplay, setFavouritesDisplay] = useState("btn btn-primary dropdown-toggle d-none")
 	const [dropDownMenuDisplay, setDropDownMenuDisplay] = useState("dropdown-menu dropdown-menu-end")
 
-	let liItemGenerator = store.favourites.map((item) => {	
+	// generador de items de lista de favoritos inicial
+	let liItemGenerator = store.favourites.map((item) => {
 		return (
 			<LiItem
 				key={item.name}
@@ -23,6 +25,7 @@ export const Navbar = () => {
 		)
 	});
 
+	// actualizador de items de lista de favoritos
 	useEffect(() => {
 		liItemGenerator = store.favourites.map((item) => {
 			return (
@@ -36,6 +39,7 @@ export const Navbar = () => {
 		});
 	}, [store.favourites])
 
+	// condiciones de visibilidad de botón y dropdown de favoritos
 	useEffect(() => {
 		if (favourites.length < 1) {
 			setFavouritesDisplay("btn btn-primary dropdown-toggle d-none")
@@ -45,7 +49,6 @@ export const Navbar = () => {
 			setFavouritesDisplay("btn btn-primary dropdown-toggle")
 			setDropDownMenuDisplay("dropdown-menu dropdown-menu-end")
 		}
-
 	}, [favourites])
 
 	return (
@@ -53,8 +56,8 @@ export const Navbar = () => {
 			<Link to="/">
 				<img src="https://logodownload.org/wp-content/uploads/2015/12/star-wars-logo-1-1.png" alt="star-wars-logo" style={{ width: "6rem" }} />
 			</Link>
+			{/* inicio favoritos */}
 			<div className="ml-auto">
-				{/* <Link to="/demo"> */}
 				<div className="dropdown">
 					<button className={favouritesDisplay} type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-boundary="viewport">
 						Favourites
@@ -63,8 +66,8 @@ export const Navbar = () => {
 						{liItemGenerator}
 					</ul>
 				</div>
-				{/* </Link> */}
 			</div>
+			{/* fin favoritos */}
 		</nav>
 	);
 };

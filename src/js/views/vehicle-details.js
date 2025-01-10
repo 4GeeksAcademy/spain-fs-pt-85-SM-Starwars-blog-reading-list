@@ -10,28 +10,36 @@ import "../../styles/details-view.css";
 export const VehicleDetails = () => {
     const { store, actions } = useContext(Context);
     const vehiclesSpecificDetails = store.vehicleSpecificDetails.result.properties
+    // verificador de existencia en favoritos
     const isFavourite = store.favourites.some(
-        (fav) => fav.name === vehiclesSpecificDetails.model
+        (fav) => fav.name === vehiclesSpecificDetails.name
     )
 
+    // variable para el manejo de cambio del botón de favorito dependiendo de si se encuentra en favoritos o no
     const favButtonClass = isFavourite
         ? "btn btn-secondary btn-lg fa-solid fa-heart-crack mt-1 p-2 h-50"
         : "btn btn-danger btn-lg fa-regular fa-heart mt-1 p-2 h-50 "
-
+    // funcion para el manejo de cambio de función del botón favorito
     function favouriteHandler() {
-        vehiclesSpecificDetails.key = vehiclesSpecificDetails.model
+        vehiclesSpecificDetails.key = vehiclesSpecificDetails.name
+        const character = store.vehicles.find(
+            (char) => char.name === vehiclesSpecificDetails.name
+        );
+        if (character) {
+            vehiclesSpecificDetails.uid = character.uid;
+        }
         if (isFavourite) {
             actions.deleteFavourite(vehiclesSpecificDetails);
             return;
         }
-        actions.addFavourite(vehiclesSpecificDetails, vehiclesSpecificDetails.type)
+        actions.addFavourite(vehiclesSpecificDetails, "vehicle")
     }
 
     return (
         <div>
             <div>
                 <div className="col-11 d-flex justify-content-around align-items-center mt-6 mx-auto border border-black rounded shadow-sm">
-                    <img className="col-6 max-heigth-600px align-items-center" src="https://53.fs1.hubspotusercontent-na1.net/hub/53/hubfs/image8-2.jpg?width=600&name=image8-2.jpg"></img>
+                    <img className="col-6 max-heigth-600px align-items-center" src={actions.getSpecificVehicleImage(vehiclesSpecificDetails)} alt="vehicle image"></img>
                     <div className="col-6 text-center">
                         <div className="d-flex justify-content-around align-items-center mx-2">
                             <h1 className="my-3">{vehiclesSpecificDetails.name}</h1>
@@ -80,9 +88,6 @@ export const VehicleDetails = () => {
                     </span>
                 </div>
             </div>
-            <Link to="/">
-                <button className="btn btn-primary">Back home</button>
-            </Link>
         </div>
     );
 };

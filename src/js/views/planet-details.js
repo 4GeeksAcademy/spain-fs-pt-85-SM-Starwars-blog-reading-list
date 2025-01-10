@@ -9,17 +9,39 @@ import "../../styles/details-view.css";
 
 export const PlanetDetails = () => {
 	const { store, actions } = useContext(Context);
-	// console.log(store.characterSpecificDetails.result.properties, "aqui");
 	const planetSpecificDetails = store.planetSpecificDetails.result.properties
-	
+	const isFavourite = store.favourites.some(
+        (fav) => fav.name === planetSpecificDetails.name
+    )
+
+    const favButtonClass = isFavourite
+    ? "btn btn-secondary btn-lg fa-solid fa-heart-crack mt-1 p-2 h-50"
+    : "btn btn-danger btn-lg fa-regular fa-heart mt-1 p-2 h-50 "
+
+    function favouriteHandler(){
+        planetSpecificDetails.key = planetSpecificDetails.name
+        if (isFavourite) {
+            actions.deleteFavourite(planetSpecificDetails);
+			console.log(planetSpecificDetails);
+            return;
+        }
+        actions.addFavourite(planetSpecificDetails, planetSpecificDetails.type)
+		console.log(planetSpecificDetails);
+		
+    }
+
+
 	return (
 		<div>
 			<div>
-				<div className="col-11 d-flex justify-content-around mt-6">
-					<img className="col-6" src="https://cdn.ncbi.nlm.nih.gov/corehtml/query/egifs/https:--ashpublications.org-images-blood-pubmed.jpg"></img>
+				<div className="col-11 d-flex justify-content-around align-items-center mt-6 mx-auto border border-black rounded shadow-sm">
+					<img className="col-6 max-heigth-600px align-items-center" src="https://cdn.ncbi.nlm.nih.gov/corehtml/query/egifs/https:--ashpublications.org-images-blood-pubmed.jpg"></img>
 					<div className="col-6 text-center">
-						<h1>{planetSpecificDetails.name}</h1>
-						<p className="aurek-font">
+					<div className="d-flex justify-content-around align-items-center mx-2">
+                            <h1 className="my-3">{planetSpecificDetails.name}</h1>
+                            <button className={favButtonClass} onClick={favouriteHandler}></button>
+                        </div>
+						<p className="aurek-font m-3">
 							Lorem ipsum dolor sit amet. Aut quod velit in doloremque animi qui iusto animi est laborum porro aut vero commodi
 							aut recusandae cumque nam cumque necessitatibus. Id sapiente esse et sunt galisum hic omnis quas aut omnis cumque
 							in nostrum praesentium eum adipisci veritatis. Et fuga necessitatibus quo corrupti provident est voluptatibus omnis
@@ -35,7 +57,7 @@ export const PlanetDetails = () => {
 						</p>
 					</div>
 				</div>
-				<div className="d-flex flex-wrap justify-content-around ">
+				<div className="d-flex flex-wrap justify-content-around mt-3">
 					<span className="text-center mt-2 px-2 border border-top-0 border-bottom-0">
 						NAME <br></br>
 						{planetSpecificDetails.name}

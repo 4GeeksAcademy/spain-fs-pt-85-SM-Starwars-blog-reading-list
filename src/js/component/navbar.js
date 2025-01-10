@@ -11,7 +11,7 @@ export const Navbar = () => {
 	const [favouritesDisplay, setFavouritesDisplay] = useState("btn btn-primary dropdown-toggle d-none")
 	const [dropDownMenuDisplay, setDropDownMenuDisplay] = useState("dropdown-menu dropdown-menu-end")
 
-	let liItemGenerator = store.favourites.map((item) => {
+	let liItemGenerator = store.favourites.map((item) => {	
 		return (
 			<LiItem
 				key={item.name}

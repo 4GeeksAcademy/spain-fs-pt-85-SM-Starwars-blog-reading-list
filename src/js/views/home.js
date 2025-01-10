@@ -3,7 +3,6 @@ import { useNavigate } from "react-router";
 import HomeCard from "../component/home-card.jsx";
 import { Context } from "../store/appContext.js";
 import "../../styles/home.css";
-import { throttle } from "lodash";
 
 const Home = () => {
 	// destructuración de context
@@ -12,22 +11,39 @@ const Home = () => {
 	const vehicles = store.vehicles;
 	const planets = store.planets;
 	const navigate = useNavigate();
+	const [classCursorGrabing, setClassCursorGrabing] = useState("custom-scroll-bar-hover")
 	// hooks necesarios para el click and drag
 	const [isMouseDown, setIsMouseDown] = useState(false);
 	const [startX, setStartX] = useState(0);
 	const [scrollLeft, setScrollLeft] = useState(0);
 
 	const characterCardGenerator = characters.map((character) => {
+		const isFavourite = store.favourites.some(
+			(fav) => fav.name === character.name
+		);
+		
 		return (
 			<HomeCard
 				key={character.name}
 				name={character.name}
+				isFavourite={isFavourite}
 				learnMoreOnClick={() => learnMoreCharacter(character)}
-				addFavouriteOnCLick={() => actions.addFavourite(character, "character")}
+				addFavouriteOnCLick={() => favouriteHandler(character, "character")}
 				image={actions.getSpecificCharacterImage(character)}
 			/>
 		)
 	})
+
+	function favouriteHandler(targetItem, typeOfItem){
+		for (let i = 0; i < store.favourites.length; i++){
+			if (targetItem.name == store.favourites[i].name) {
+				targetItem.key = targetItem.name;
+				actions.deleteFavourite(targetItem)
+				return
+			}
+		}
+		actions.addFavourite(targetItem, typeOfItem)
+	}
 
 	async function learnMoreCharacter(targetCharacter) {
 		const uid = targetCharacter.uid;
@@ -37,12 +53,16 @@ const Home = () => {
 	}
 
 	const vehicleCardGenerator = vehicles.map((vehicle) => {
+		const isFavourite = store.favourites.some(
+			(fav) => fav.name === vehicle.name
+		);
 		return (
 			<HomeCard
 				key={vehicle.name}
 				name={vehicle.name}
+				isFavourite={isFavourite}
 				learnMoreOnClick={() => learnMoreVehicle(vehicle)}
-				addFavouriteOnCLick={() => actions.addFavourite(vehicle, "vehicle")}
+				addFavouriteOnCLick={() => favouriteHandler(vehicle, "vehicle")}
 			/>
 		)
 	})
@@ -55,12 +75,16 @@ const Home = () => {
 	}
 
 	const planetCardGenerator = planets.map((planet) => {
+		const isFavourite = store.favourites.some(
+			(fav) => fav.name === planet.name
+		);
 		return (
 			<HomeCard
 				key={planet.name}
 				name={planet.name}
+				isFavourite={isFavourite}
 				learnMoreOnClick={() => learnMorePlanet(planet)}
-				addFavouriteOnCLick={() => actions.addFavourite(planet, "planet")}
+				addFavouriteOnCLick={() => favouriteHandler(planet, "planet")}
 			/>
 		)
 	})
@@ -107,15 +131,18 @@ const Home = () => {
 		e.preventDefault();
 		setIsMouseDown(true);
 		setStartX(e.pageX - target.offsetLeft);
-		setScrollLeft(target.scrollLeft)		
+		setScrollLeft(target.scrollLeft);
+		setClassCursorGrabing("custom-scroll-bar-active");	
 	}
 
 	const handleMouseUp = () => {
 		setIsMouseDown(false);
+		setClassCursorGrabing("custom-scroll-bar-hover");
 	}
 
 	const handleMouseLeave = () => {
 		setIsMouseDown(false);
+		setClassCursorGrabing("custom-scroll-bar-hover");
 	}
 
 	const handleMouseMove = (e) => {
@@ -128,10 +155,10 @@ const Home = () => {
 	}
 
 	return (
-		<div className="d-flex flex-column mt-6">
+		<div className="d-flex flex-column mt-6 col-11 mx-auto border rounded shadow-sm">
 			<h1 className="text-center mt-5">Characters</h1>
 			<span className="mb-2 text-center">Showing {store.characters.length} out of 82 characters</span>
-			<div className="mb-5 d-flex flex-row custom-scroll-bar custom-scroller" 
+			<div className={`mb-5 d-flex flex-row custom-scroll-bar ${classCursorGrabing}`} 
 			onScroll={handleCharactersScroll}
 			onMouseDown={handleMouseDown}
 			onMouseUp={handleMouseUp}
@@ -142,7 +169,7 @@ const Home = () => {
 			</div>
 			<h1 className="mt-5 text-center">Vehicles</h1>
 			<span className="mb-2 text-center">Showing {store.vehicles.length} out of 39 vehicles</span>
-			<div className="mb-5 d-flex flex-row custom-scroll-bar custom-scroller" 
+			<div className={`mb-5 d-flex flex-row custom-scroll-bar ${classCursorGrabing}`}
 			onScroll={handleVehiclesScroll}
 			onMouseDown={handleMouseDown}
 			onMouseUp={handleMouseUp}
@@ -153,7 +180,7 @@ const Home = () => {
 			</div>
 			<h1 className="mt-5 text-center">Planets</h1>
 			<span className="mb-2 text-center">Showing {store.planets.length} out of 60 planets</span>
-			<div className="d-flex flex-row custom-scroll-bar custom-scroller" 
+			<div className={`mb-5 d-flex flex-row custom-scroll-bar ${classCursorGrabing}`}
 			onScroll={handlePlanetsScroll}
 			onMouseDown={handleMouseDown}
 			onMouseUp={handleMouseUp}

@@ -23,9 +23,9 @@ function LiItem(props) {
     }
 
     return (
-        <div className="d-flex justify-content-between align-items-center dropdown-item px-3 py-2">
+        <div className="d-flex justify-content-between align-items-center dropdown-item px-3 py-2 g-2">
             <li style={{textDecoration: "underline", cursor: "pointer"}} onClick={goToFavouriteOnClick}>{props.name}</li>
-            <button className="btn btn-danger fa-solid fa-trash" onClick={(e) => {
+            <button className="btn btn-danger fa-solid fa-trash ms-1" onClick={(e) => {
                 e.stopPropagation();
                 props.deleteOnClick();
             }}></button>

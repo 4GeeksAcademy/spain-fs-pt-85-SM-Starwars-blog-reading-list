@@ -1,12 +1,14 @@
 /* // <uniquifier>: Use a unique and descriptive class name
 // <weight>: Use a value from 100 to 900 */
 
-.custom-scroller {
-  scroll-behavior: smooth;
+/* .custom-scroller {
+  
+  
   /* scroll-snap-type: x mandatory;
   scroll-snap-align: start;
   scroll-snap-stop: always; */
-}
+
+
 
 .mt-6 {
   margin-top: 6rem;
@@ -15,11 +17,19 @@
 .custom-scroll-bar {
   overflow-x: auto;
   overflow-y: hidden;
+  scroll-behavior: smooth;
   white-space: nowrap;
   scrollbar-width: thin;
   scrollbar-color: black #aaa;
 }
 
+.custom-scroll-bar-hover{
+  cursor:grab;
+}
+
+.custom-scroll-bar-active{
+  cursor: grabbing;
+}
 /* Para navegadores que no soporten `scrollbar-color` y `scrollbar-width` */
 /* .custom-scroll-bar::-webkit-scrollbar {
   height: 8px;
